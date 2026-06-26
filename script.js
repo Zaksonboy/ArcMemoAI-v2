@@ -66,3 +66,21 @@ connectBtn.addEventListener("click", async () => {
     showStatus("Connection failed.");
   }
 });
+const generateBtn = document.getElementById("generateBtn");
+const memoBox = document.getElementById("memoBox");
+
+generateBtn.addEventListener("click", async () => {
+
+  const recipient = document.getElementById("recipient").value.trim();
+  const amount = document.getElementById("amount").value.trim();
+  const purpose = document.getElementById("purpose").value.trim();
+
+  if (!recipient || !amount || !purpose) {
+    showStatus("Please fill in all fields.");
+    return;
+  }
+
+  showStatus("Generating AI memo...");
+
+  // We will connect the AI API in the next step.
+});
