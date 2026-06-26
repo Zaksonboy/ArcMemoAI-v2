@@ -82,5 +82,35 @@ generateBtn.addEventListener("click", async () => {
 
   showStatus("Generating AI memo...");
 
-  // We will connect the AI API in the next step.
+  try {
+
+  const response = await fetch("/api/generateMemo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      recipient,
+      amount,
+      purpose
+    })
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || "Failed to generate memo.");
+  }
+
+  memoBox.textContent = data.memo;
+
+  showStatus("AI memo generated successfully.");
+
+} catch (error) {
+
+  console.error(error);
+
+  showStatus(error.message);
+
+  }
 });
